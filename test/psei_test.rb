@@ -1,11 +1,13 @@
 require 'test_helper'
 
-class PseiTest < Minitest::Test
-  def test_that_it_has_a_version_number
-    refute_nil ::Psei::VERSION
-  end
+describe Psei do
+  #before do
+  #  @saitama = Psei::Attack.new
+  #end
 
-  def test_it_does_something_useful
-    assert false
-  end
+  #describe "when using a normal attack" do
+  #  it "must respond strongly" do
+  #    @saitama.normal_punch.must_equal "boom!"
+  #  end
+  #end
 end
