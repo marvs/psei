@@ -1,6 +1,8 @@
 require "psei/version"
 require "psei/parser"
-require "psei/day"
+require "psei/security"
+require "psei/index"
+require "psei/date"
 
 module Psei
   # Your code goes here...
