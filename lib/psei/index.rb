@@ -18,6 +18,10 @@ class Psei::Index
     values[symbol.to_s]
   end
   
+  def date
+    Psei::Date.new(@parsed).get
+  end
+  
   private
   
   def find_by_symbol symbol

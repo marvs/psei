@@ -15,9 +15,11 @@ class Psei::Security
   
   # Returns the last traded price of a specific security
   def value symbol
-    #stock = find_by_symbol symbol
-    #stock['lastTradedPrice'].to_f
     values[symbol.to_s]
+  end
+  
+  def date
+    Psei::Date.new(@parsed).get
   end
   
   private
