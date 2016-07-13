@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe Psei do
+describe Psei::Date do
   #before do
   #  @saitama = Psei::Attack.new
   #end
