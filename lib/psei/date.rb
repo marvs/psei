@@ -1,6 +1,7 @@
 # Based on the parsed request, gets the date of the values
 class Psei::Date
   DATE_IDENTIFIER = "DATE"
+  DATETIME_FORMAT = '%m/%d/%Y %H:%M %p%z'
   
   def initialize parsed
     @parsed = parsed
@@ -27,6 +28,6 @@ class Psei::Date
   end
   
   def parse_time
-    @parsed_time ||= Time.parse(date_string)
+    @parsed_time ||= DateTime.strptime(date_string, DATETIME_FORMAT)
   end
 end

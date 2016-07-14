@@ -1,3 +1,4 @@
+require "date"
 require "psei/version"
 require "psei/parser"
 require "psei/security"
