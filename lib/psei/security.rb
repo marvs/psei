@@ -1,21 +1,26 @@
 class Psei::Security
-  SOURCE_URL = "http://pse.com.ph/stockMarket/home.html?method=getSecuritiesAndIndicesForPublic&ajax=true"
-  HEADING_ALIAS = "Stock Update As of"
-  INDEX_ALIASES = ["PSEi", "All Shares", "Financials", "Industrial", "Holding Firms", "Property", "Services", "Mining and Oil"].freeze
-  attr_reader :parsed
   
   def initialize
-    @parsed = Psei::Parser.new(SOURCE_URL).process
+    @parsed = Psei::Parser.new(Psei::SOURCE_URL).process
+    @formatter = Psei::Formatter.new
   end
   
   # Returns a Hash of last traded prices per security
-  def values
+  def last_prices
     securities_hash
   end
   
-  # Returns the last traded price of a specific security
+  # Returns the data of a  specific security
   def value symbol
-    values[symbol.to_s]
+    security symbol
+  end
+  
+  def symbols
+    securities_hash.keys
+  end
+  
+  def full
+    symbols.collect{ |x| value x }
   end
   
   def date
@@ -30,11 +35,24 @@ class Psei::Security
   end
   
   def securities_filter
-    @parsed.reject{|x| (INDEX_ALIASES).include?(x['securityAlias']) || x['securitySymbol'] == HEADING_ALIAS}
+    @sec_filter ||= @parsed.reject do |x| 
+      (Psei::INDEX_ALIASES).include?(x['securityAlias']) || x['securitySymbol'] == Psei::HEADING_ALIAS
+    end
   end
   
   def securities_hash
-    @sec_hash ||= Hash[securities_filter.collect{|item| [item['securitySymbol'], item['lastTradedPrice'].to_f] }]
+    @sec_hash ||= Hash[securities_array]
+  end
+  
+  def securities_array
+    @sec_array ||= securities_filter.collect do |item| 
+      [item['securitySymbol'], item['lastTradedPrice'].to_f]
+    end
+  end
+  
+  def security sym
+    sec = securities_filter.select{|x| x['securitySymbol'] == sym }.first
+    @formatter.process sec
   end
   
 end

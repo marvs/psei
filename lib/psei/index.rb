@@ -1,11 +1,7 @@
 class Psei::Index
-  SOURCE_URL = "http://pse.com.ph/stockMarket/home.html?method=getSecuritiesAndIndicesForPublic&ajax=true"
-  HEADING_ALIAS = "Stock Update As of"
-  INDEX_ALIASES = ["PSEi", "All Shares", "Financials", "Industrial", "Holding Firms", "Property", "Services", "Mining and Oil"].freeze
-  attr_reader :parsed
   
   def initialize
-    @parsed = Psei::Parser.new(SOURCE_URL).process
+    @parsed = Psei::Parser.new(Psei::SOURCE_URL).process
   end
   
   # Returns a Hash of last values of indices
@@ -30,7 +26,9 @@ class Psei::Index
   end
   
   def indices_filter
-    @parsed.select{|x| (INDEX_ALIASES).include?(x['securityAlias']) && x['securitySymbol'] != HEADING_ALIAS}
+    @parsed.select do |x| 
+      (Psei::INDEX_ALIASES).include?(x['securityAlias']) && x['securitySymbol'] != Psei::HEADING_ALIAS
+    end
   end
   
   def indices
