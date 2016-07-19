@@ -2,16 +2,21 @@ class Psei::Index
   
   def initialize
     @parsed = Psei::Parser.new(Psei::SOURCE_URL).process
+    @formatter = Psei::Formatter.new
+  end
+  
+  def symbols
+    indices_hash.keys
   end
   
   # Returns a Hash of last values of indices
   def values
-    indices
+    symbols.collect{ |x| value x }
   end
   
   # Returns the last value of an index
   def value symbol
-    values[symbol.to_s]
+    index symbol
   end
   
   def date
@@ -31,8 +36,19 @@ class Psei::Index
     end
   end
   
-  def indices
-    @ind_hash ||= Hash[indices_filter.collect{|item| [item['securitySymbol'], item['lastTradedPrice'].to_f] }]
+  def indices_hash
+    @ind_hash ||= Hash[indices_array]
+  end
+  
+  def indices_array
+    @ind_array ||= indices_filter.collect do |item| 
+      [item['securitySymbol'], item['lastTradedPrice'].to_f]
+    end
+  end
+  
+  def index sym
+    ind = indices_filter.select{|x| x['securitySymbol'] == sym }.first
+    @formatter.process ind
   end
   
 end

@@ -5,22 +5,17 @@ class Psei::Security
     @formatter = Psei::Formatter.new
   end
   
-  # Returns a Hash of last traded prices per security
-  def last_prices
-    securities_hash
+  def symbols
+    securities_hash.keys
+  end
+  
+  def values
+    symbols.collect{ |x| value x }
   end
   
   # Returns the data of a  specific security
   def value symbol
     security symbol
-  end
-  
-  def symbols
-    securities_hash.keys
-  end
-  
-  def full
-    symbols.collect{ |x| value x }
   end
   
   def date
