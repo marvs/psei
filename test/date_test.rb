@@ -18,11 +18,13 @@ describe Psei::Date do
     @date = Psei::Date.new(sample)
   end
 
-  describe "when provided a date hash" do
+  describe "#get" do
     it "returns the correct date" do
       @date.get.must_equal Date.parse('2016-10-20')
     end
-    
+  end
+  
+  describe "#get_datetime" do
     it "returns the correct hour" do
       @date.get_datetime.hour.must_equal 15
     end
