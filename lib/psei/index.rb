@@ -1,7 +1,8 @@
 class Psei::Index
   
-  def initialize
-    @parsed = Psei::Parser.new(Psei::SOURCE_URL).process
+  def initialize(parser=nil)
+    @parser = parser || Psei::Parser.new(Psei::SOURCE_URL)
+    @parsed = @parser.process
     @formatter = Psei::Formatter.new
   end
   
