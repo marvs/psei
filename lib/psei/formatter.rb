@@ -21,7 +21,7 @@ class Psei::Formatter
   end
   
   def get_total_volume
-    int_format @arr['totalVolume']
+    float_format @arr['totalVolume']
   end
   
   def get_percent_change
