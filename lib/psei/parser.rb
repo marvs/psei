@@ -8,16 +8,16 @@ class Psei::Parser
     @url = url
   end
   
-  def process
-    response = get_response
-    JSON.parse(response)
+  def process(response=nil)
+    resp = response || get_response
+    JSON.parse(resp)
   end
   
   private
   
   def get_response
     uri = URI(@url)
-    Net::HTTP.get(uri)
+    @response ||= Net::HTTP.get(uri)
   end
   
 end

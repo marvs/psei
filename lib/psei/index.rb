@@ -32,7 +32,7 @@ class Psei::Index
   end
   
   def indices_filter
-    @parsed.select do |x| 
+    @ind_filter ||= @parsed.select do |x| 
       (Psei::INDEX_ALIASES).include?(x['securityAlias']) && x['securitySymbol'] != Psei::HEADING_ALIAS
     end
   end
