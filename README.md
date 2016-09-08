@@ -3,6 +3,9 @@
 This gem fetches the end-of-day values of the Philippine Stock Exchange (PSE).
 More details available at their website [www.pse.com.ph](http://www.pse.com.ph/).
 
+[![Gem Version](https://badge.fury.io/rb/psei.svg)](https://badge.fury.io/rb/psei)
+[![Build Status](https://travis-ci.org/marvs/psei.png)](https://travis-ci.org/marvs/psei)
+
 ## Installation
 
 Add this line to your application's Gemfile:
