@@ -20,7 +20,7 @@ describe Psei::Formatter do
       end
       
       it "returns the correct type" do
-        @formatted[:total_volume].must_be_kind_of Integer
+        @formatted[:total_volume].must_be_kind_of Float
       end
     end
     
