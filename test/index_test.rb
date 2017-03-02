@@ -26,7 +26,7 @@ describe Psei::Index do
 
   before do
     parser.expect :process, sample
-    @index = Psei::Index.new(parser)
+    @index = Psei::Index.new({}, parser)
   end
 
   describe "#symbols" do

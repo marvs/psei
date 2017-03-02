@@ -26,7 +26,7 @@ describe Psei::Security do
 
   before do
     parser.expect :process, sample
-    @security = Psei::Security.new(parser)
+    @security = Psei::Security.new({}, parser)
   end
 
   describe "#symbols" do

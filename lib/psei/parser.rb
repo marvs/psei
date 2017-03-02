@@ -4,8 +4,9 @@ require 'json'
 class Psei::Parser
   attr_reader :url
   
-  def initialize url
+  def initialize url, headers
     @url = url
+    @headers = headers
   end
   
   def process(response=nil)
@@ -16,8 +17,15 @@ class Psei::Parser
   private
   
   def get_response
-    uri = URI(@url)
-    @response ||= Net::HTTP.get(uri)
+    uri = URI.parse(@url)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    @headers.keys.each do |k|
+      request[k.to_s] = @headers[k]
+    end
+
+    @response ||= http.request(request).body
   end
   
 end

@@ -1,7 +1,7 @@
 class Psei::Security
   
-  def initialize(parser=nil)
-    @parser = parser || Psei::Parser.new(Psei::SOURCE_URL)
+  def initialize(headers={}, parser=nil)
+    @parser = parser || Psei::Parser.new(Psei::SOURCE_URL, headers)
     @parsed = @parser.process
     @formatter = Psei::Formatter.new
   end
