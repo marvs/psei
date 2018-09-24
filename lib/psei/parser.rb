@@ -19,6 +19,7 @@ class Psei::Parser
   def get_response
     uri = URI.parse(@url)
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
 
     request = Net::HTTP::Get.new(uri.request_uri)
     @headers.keys.each do |k|
