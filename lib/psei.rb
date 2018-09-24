@@ -7,7 +7,7 @@ require "psei/index"
 require "psei/date"
 
 module Psei
-  SOURCE_URL = "http://pse.com.ph/stockMarket/home.html?method=getSecuritiesAndIndicesForPublic&ajax=true"
+  SOURCE_URL = "https://pse.com.ph/stockMarket/home.html?method=getSecuritiesAndIndicesForPublic&ajax=true"
   HEADING_ALIAS = "Stock Update As of"
   INDEX_ALIASES = [ "PSEi", "All Shares", "Financials", "Industrial", "Holding Firms", "Property", 
                     "Services", "Mining and Oil"].freeze
